@@ -26,7 +26,21 @@ const {
  * ------------------------------------------------------------
  */
 const client = new Client({
-  intents: [GatewayIntentBits.Guilds]
+  intents: [GatewayIntentBits.Guilds],
+  sweepers: {
+    messages: {
+      interval: 300,
+      lifetime: 60
+    },
+    users: {
+      interval: 300,
+      filter: () => true
+    },
+    guildMembers: {
+      interval: 300,
+      filter: () => true
+    }
+  }
 });
 
 /**
@@ -43,7 +57,7 @@ const TOPIC_FLAG = 'postulacion_embed_enviado';
  * Evento: Bot listo
  * ------------------------------------------------------------
  */
-client.once('ready', () => {
+client.once('clientReady', () => {
   console.log(`✅ Bot conectado como ${client.user.tag}`);
 });
 
